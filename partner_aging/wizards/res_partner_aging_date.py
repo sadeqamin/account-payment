@@ -30,6 +30,14 @@ class ResPartnerAgingDate(models.TransientModel):
             'context': ctx,
         }
 
+    
+    @api.multi
+    def customer_aging_action_run(self):
+        run_date = datetime.date.today()
+        cc = self.env['res.partner.aging.date'].create({'age_date': run_date})
+        cc.open_customer_aging()
+       
+    
     @api.multi
     def open_supplier_aging(self):
         ctx = self._context.copy()
