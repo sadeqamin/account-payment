@@ -33,7 +33,7 @@ class ResPartnerAgingDate(models.TransientModel):
     
     @api.multi
     def customer_aging_action_run(self):
-        run_date = datetime.date.today()
+        run_date = datetime.datetime.today()
         cc = self.env['res.partner.aging.date'].create({'age_date': run_date})
         cc.open_customer_aging()
        
