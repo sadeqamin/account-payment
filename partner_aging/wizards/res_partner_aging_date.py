@@ -62,3 +62,11 @@ class ResPartnerAgingDate(models.TransientModel):
                        ('not_due', '<>', 0.000000)],
             'context': ctx,
         }
+    
+        # scheduled action to generate the report on daily basis
+        @api.multi
+        def supplier_aging_action_run(self):
+        run_date = datetime.datetime.today()
+        cc = self.env['res.partner.aging.date'].create({'age_date': run_date})
+        cc.open_supplier_aging()
+
