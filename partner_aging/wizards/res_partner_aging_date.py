@@ -30,7 +30,7 @@ class ResPartnerAgingDate(models.TransientModel):
             'context': ctx,
         }
 
-    
+    # scheduled action to generate the report on daily basis
     @api.multi
     def customer_aging_action_run(self):
         run_date = datetime.datetime.today()
